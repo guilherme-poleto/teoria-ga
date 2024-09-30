@@ -1,0 +1,5 @@
+package algoritmos;
+
+class Huffman {
+    
+}
