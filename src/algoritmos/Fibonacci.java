@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Fibonacci {
-    private final List<Integer> decoderFibonacciList;
+    private final List<Integer> fibonacciList;
 
     public Fibonacci() {
-        this.decoderFibonacciList = buildFibonacciList(127);
+        this.fibonacciList = buildFibonacciList(127);
     }
 
     public String encode(String message) {
@@ -34,13 +34,11 @@ public class Fibonacci {
     }
 
     private String encodeNumber(int number) {
-        List<Integer> fibonacci = buildFibonacciList(number);
-
         StringBuilder result = new StringBuilder();
         int reducedNumber = number;
 
-        for (int i = fibonacci.size() - 1; i >= 0; i--) {
-            int value = fibonacci.get(i);
+        for (int i = fibonacciList.size() - 1; i >= 0; i--) {
+            int value = fibonacciList.get(i);
             if (value <= reducedNumber) {
                 reducedNumber -= value;
                 result.append("1");
@@ -59,7 +57,7 @@ public class Fibonacci {
 
         for (int i = 0; i < length; i++) {
             if (binary.charAt(i) == '1') {
-                num += decoderFibonacciList.get(length - i - 1);
+                num += fibonacciList.get(length - i - 1);
             }
         }
 
