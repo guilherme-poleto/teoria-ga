@@ -6,10 +6,7 @@ public class Main {
     public static void main(String[] args) {
 
         Fibonacci fn = new Fibonacci();
-        String message = "hello world!";
-        String encoded = fn.encode(message);
-        System.out.println(encoded);
-        System.out.println(fn.decode(encoded));
+        EliasGamma eg = new EliasGamma();
 
         Ui ui = new Ui();
         ui.usuario_msg();
