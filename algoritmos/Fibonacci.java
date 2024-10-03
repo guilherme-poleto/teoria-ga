@@ -12,12 +12,11 @@ public class Fibonacci implements Algorithm {
 
     public String encodeNumber(int number) {
         StringBuilder result = new StringBuilder();
-        int reducedNumber = number;
 
         for (int i = fibonacciList.size() - 1; i >= 0; i--) {
             int value = fibonacciList.get(i);
-            if (value <= reducedNumber) {
-                reducedNumber -= value;
+            if (value <= number) {
+                number -= value;
                 result.append("1");
             } else {
                 if (!result.isEmpty()) {
@@ -45,15 +44,15 @@ public class Fibonacci implements Algorithm {
         List<Integer> fibonacci = new ArrayList<>();
         fibonacci.add(1);
         fibonacci.add(2);
-        int counter = 2;
-        int nextValue = 3;
+        int index = 1;
+        int nextValue = Integer.MIN_VALUE;
 
         while (nextValue <= number) {
-            nextValue = fibonacci.get(counter - 1) + fibonacci.get(counter - 2);
+            nextValue = fibonacci.get(index) + fibonacci.get(index - 1);
             if (nextValue <= number) {
                 fibonacci.add(nextValue);
             }
-            counter++;
+            index++;
         }
         return fibonacci;
     }

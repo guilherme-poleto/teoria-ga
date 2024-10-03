@@ -102,7 +102,7 @@ public class Ui {
             message = sc.next();
             result = encoder.decodeMessage(message);
         }
-        System.out.println(result + "\n");
+        System.out.println("Resultado: " + result + "\n");
     }
 
     private void menu() {
