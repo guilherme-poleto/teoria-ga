@@ -3,37 +3,14 @@ package algoritmos;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Fibonacci {
+public class Fibonacci implements Algorithm {
     private final List<Integer> fibonacciList;
 
     public Fibonacci() {
         this.fibonacciList = buildFibonacciList(127);
     }
 
-    public String encode(String message) {
-        StringBuilder result = new StringBuilder();
-
-        for (char c : message.toCharArray()) {
-            String codeWord = encodeNumber(c);
-            result.append(codeWord).append(" ");
-        }
-
-        return result.toString();
-    }
-
-    public String decode(String encodedMessage) {
-        StringBuilder result = new StringBuilder();
-        String[] encodedChars = encodedMessage.split(" ");
-
-        for (String encodedChar : encodedChars) {
-            int decodedAscii = decodeBinary(encodedChar);
-            result.append((char) decodedAscii);
-        }
-
-        return result.toString();
-    }
-
-    private String encodeNumber(int number) {
+    public String encodeNumber(int number) {
         StringBuilder result = new StringBuilder();
         int reducedNumber = number;
 
@@ -51,7 +28,7 @@ public class Fibonacci {
         return result.toString();
     }
 
-    private int decodeBinary(String binary) {
+    public int decodeBinary(String binary) {
         int num = 0;
         int length = binary.length();
 

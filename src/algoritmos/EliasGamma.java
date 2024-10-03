@@ -2,33 +2,9 @@ package algoritmos;
 
 import java.util.Arrays;
 
-public class EliasGamma {
+public class EliasGamma implements Algorithm {
 
-    public String encode(String message) {
-
-        StringBuilder result = new StringBuilder();
-
-        for (char c : message.toCharArray()) {
-            String codeWord = encodeNumber(c);
-            result.append(codeWord).append(" ");
-        }
-
-        return result.toString();
-    }
-
-    public String decode(String encodedMessage) {
-        StringBuilder result = new StringBuilder();
-        String[] encodedChars = encodedMessage.split(" ");
-
-        for (String encodedChar : encodedChars) {
-            int decodedAscii = decodeBinary(encodedChar);
-            result.append((char) decodedAscii);
-        }
-
-        return result.toString();
-    }
-
-    private String encodeNumber(int n) {
+    public String encodeNumber(int n) {
         StringBuilder result = new StringBuilder();
         int N = (int) (Math.log(n) / Math.log(2));
         int resto = n - ((int) (Math.pow(2, N))); // resto = number - (2 ^ N)
@@ -39,7 +15,7 @@ public class EliasGamma {
         return result.append(prefix).append("1").append(suffix).toString();
     }
 
-    private int decodeBinary(String binary) {
+    public int decodeBinary(String binary) {
         int NCounter = 0;
         while (binary.charAt(NCounter) == '0') {
             NCounter++;
