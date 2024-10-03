@@ -6,6 +6,6 @@ public class Main {
     public static void main(String[] args) {
 
         Ui ui = new Ui();
-        ui.escolhe_metodo_compressao();
+        ui.printMainMenu();
     }
 }

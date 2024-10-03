@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    private final Encoder encoder = new Encoder();
 
     public String usuario_msg() { // metodo = 1,2,3,4
         // long num = 0;
@@ -32,26 +33,29 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public void escolhe_metodo_compressao() {
-        boolean isValid = false;
-        int num = 0;
-
-        while (!isValid) {
+    public void printMainMenu() {
+        int option;
+        while (true) {
             try {
                 menu();
-                num = sc.nextInt();
-                if (num < 1 || num > 4) {
+                System.out.print("Opção: ");
+                option = sc.nextInt();
+                if (option < 1 || option > 5) {
                     System.out.println("\n***Digite apenas números válidos!***\n");
                     continue;
                 }
-                isValid = true;
+                if (option == 5) break;
+                setAlgorithm(option);
+                printEncodeMenu();
             } catch (Exception e) {
                 System.out.println("\n***Entrada inválida. Por favor, digite apenas números!***\n");
                 sc.next();
             }
         }
-        Encoder encoder = new Encoder();
-        switch (num) {
+    }
+
+    private void setAlgorithm(int option) {
+        switch (option) {
             case 1:
                 // encoder.setAlgorithm(new Golomb());
             case 2:
@@ -63,25 +67,33 @@ public class Ui {
             case 4:
                 // encoder.setAlgorithm(new Huffman());
         }
-        System.out.println("Algoritmo selecionado: " + encoder.getClassName());
-        isValid = false;
-        while (!isValid) {
+        System.out.println("\nAlgoritmo selecionado: " + encoder.getClassName());
+    }
+
+    private void printEncodeMenu() {
+        int option;
+        while (true) {
             try {
                 encodeMenu();
-                num = sc.nextInt();
-                if (num < 1 || num > 2) {
+                System.out.print("Opção: ");
+                option = sc.nextInt();
+                if (option < 1 || option > 3) {
                     System.out.println("\n***Digite apenas números válidos!***\n");
                     continue;
                 }
-                isValid = true;
+                if (option == 3) break;
+                handleEncodeOption(option);
             } catch (Exception e) {
                 System.out.println("\n***Entrada inválida. Por favor, digite apenas números!***\n");
                 sc.next();
             }
         }
-        String message = "";
+    }
+
+    private void handleEncodeOption(int option) {
+        String message;
         String result;
-        if (num == 1) {
+        if (option == 1) {
             System.out.print("Mensagem a ser codificada: ");
             message = sc.next();
             result = encoder.encodeMessage(message);
@@ -90,7 +102,7 @@ public class Ui {
             message = sc.next();
             result = encoder.decodeMessage(message);
         }
-        System.out.println(result);
+        System.out.println(result + "\n");
     }
 
     private void menu() {
@@ -99,11 +111,13 @@ public class Ui {
         System.out.println("2- Elias Gamma");
         System.out.println("3- Fibonacci");
         System.out.println("4- Huffman");
+        System.out.println("5- Sair");
     }
 
     private void encodeMenu() {
         System.out.println("Escolha uma opção do menu:");
         System.out.println("1- Codificar mensagem");
         System.out.println("2- Decodificar código binário");
+        System.out.println("3- Trocar algoritmo/Sair");
     }
 }
