@@ -30,4 +30,3 @@ public class Encoder {
         return result.toString();
     }
 }
-

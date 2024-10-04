@@ -1,37 +1,12 @@
-
-import algoritmos.EliasGamma;
-import algoritmos.Fibonacci;
-
+import algoritmos.*;
 import java.util.Scanner;
 
 public class Ui {
 
     private final Scanner sc = new Scanner(System.in).useDelimiter("\n");
     private final Encoder encoder = new Encoder();
-
-    public String usuario_msg() { // metodo = 1,2,3,4
-        // long num = 0;
-        // if (metodo == 1) {
-        //     boolean isValid = false;
-        //     while (!isValid) {
-        //         try {
-        //             menu();
-        //             num = sc.nextInt();
-        //             if (num < 0) {
-        //                 System.out.println("\n***Digite apenas números positivos!***\n");
-        //                 continue;
-        //             }
-        //             isValid = true;
-        //         } catch (Exception e) {
-        //             System.out.println("\n***Entrada inválida. Por favor, digite apenas números!***\n");
-        //             sc.next();
-        //         }
-        //     }
-        //     return num;
-        // }
-        System.out.print("Digite sua mensagem: ");
-        return sc.nextLine();
-    }
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public void printMainMenu() {
         int option;
@@ -57,7 +32,8 @@ public class Ui {
     private void setAlgorithm(int option) {
         switch (option) {
             case 1:
-                // encoder.setAlgorithm(new Golomb());
+                encoder.setAlgorithm(new Golomb(3));
+                break;
             case 2:
                 encoder.setAlgorithm(new EliasGamma());
                 break;
@@ -65,7 +41,8 @@ public class Ui {
                 encoder.setAlgorithm(new Fibonacci());
                 break;
             case 4:
-                // encoder.setAlgorithm(new Huffman());
+                 encoder.setAlgorithm(new Huffman());
+                 break;
         }
         System.out.println("\nAlgoritmo selecionado: " + encoder.getClassName());
     }
@@ -102,7 +79,7 @@ public class Ui {
             message = sc.next();
             result = encoder.decodeMessage(message);
         }
-        System.out.println("Resultado: " + result + "\n");
+        System.out.println("Resultado: " + ANSI_GREEN + result + ANSI_RESET + "\n");
     }
 
     private void menu() {

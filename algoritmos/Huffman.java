@@ -1,6 +1,6 @@
 package algoritmos;
 
-class Huffman implements Algorithm {
+public class Huffman implements Algorithm {
 
     public String encodeNumber(int n) {
         return "";
